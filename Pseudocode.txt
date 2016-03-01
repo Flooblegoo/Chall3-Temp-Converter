@@ -1,0 +1,17 @@
+Temperature Converter!
+
+WILL'S CONDITION SUPREMO BULLEIMO NEMO JEMO BEAMO - Must be in their own functions (celstofar() etc.)
+HE ALSO WANTS USER INPUT CHECKING WHICH IS - Don't let typing random shit in break the program, alert them they did the wrong thing then go back to enter again
+
+|Also use decimals not ints for the numbers|
+
+int main() (use as a 'main menu')
+Declare user input variable (user_selection)
+using if & else if determine which function to send user to (Celsius to Fahrenheit (celstofahr()) or Fahrenheit to Celsius (fahrtocels())
+Make a third option to exit program perhaps
+
+
+void celstofahr()
+declare variables to use (celsius_amount, fahrenheit_amount, user_returntomenu)
+
+- TO BE CONTINUED -
