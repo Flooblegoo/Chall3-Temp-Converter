@@ -1,17 +1,26 @@
 Temperature Converter!
 
-WILL'S CONDITION SUPREMO BULLEIMO NEMO JEMO BEAMO - Must be in their own functions (celstofar() etc.)
-HE ALSO WANTS USER INPUT CHECKING WHICH IS - Don't let typing random shit in break the program, alert them they did the wrong thing then go back to enter again
+//WILL'S CONDITIONIO SUPREMO - Must be in their own functions (celstofahr() etc.)
+//HE ALSO WANTS USER INPUT CHECKING WHICH IS - Don't let typing random shit in break the program, alert them they did the wrong thing then go back to enter again
+//Also use decimals not ints for the numbers
 
-|Also use decimals not ints for the numbers|
+int userInputValidate() //This is to call on later for input validation to avoid program ptchk!
+//REFER TO userInputValidate.cpp FOR CODE BEFORE COPYING IT ACROSS
+
+int celstofahr()
+ensure variables from main() are brought across to play with
+request amount of Celsius to convert from user
+make conversions as required
+print converted amount of Fahrenheit
+ask user if they wish to return to menu (1) or exit (2) via the variable user_returntomenu //THIS WILL BE VALIDATED WITH userInputValidate()
+if menu then main()
+if exit then farewell message and exit safely //try not to use system("pause") even though it doesn't matter because I will never cater to macfags
+
+int fahrtocels()
+//This will be exactly the same as celstofahr to the point of copy/pasting the code then just editing as appropriate
+//meaning; values for equations, text output and func/variable names
 
 int main() (use as a 'main menu')
-Declare user input variable (user_selection)
-using if & else if determine which function to send user to (Celsius to Fahrenheit (celstofahr()) or Fahrenheit to Celsius (fahrtocels())
-Make a third option to exit program perhaps
-
-
-void celstofahr()
-declare variables to use (celsius_amount, fahrenheit_amount, user_returntomenu)
-
-- TO BE CONTINUED -
+Declare variables for entire program and all functions (user_selection, celsius_amount, fahrenheit_amount, user_returntomenu)
+using if & else if determine which function to send user to (Celsius to Fahrenheit (celstofahr()) or Fahrenheit to Celsius (fahrtocels()) //THIS WILL BE VALIDATED WITH userInputValidate()
+Make a third option to exit program, perhaps
