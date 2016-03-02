@@ -1,0 +1,30 @@
+---------------------
+CELSIUS TO FAHRENHEIT
+---------------------
+1 Celsius increase = 1.8 Fahrenheit increase
+
+0 degrees Celsius = 32.0 degrees Fahrenheit
+1 degrees Celsius = 33.8 degrees Fahrenheit
+etc.
+
+Calculation to use would be, for example, if user entered 43 degrees Celsius;
+
+fahrenheit_amount = (celsius_amount (BEING 43) * 1.8) + 32
+
+fahrenheit_amount == 109.4
+
+
+---------------------
+FAHRENHEIT TO CELSIUS
+---------------------
+1 Fahrenheit increase = .556 Celsius increase
+
+0 degrees Fahrenheit = -17.778
+1 degrees Fahrenheit = -17.222
+etc.
+
+Calculation to use would be, for example, if the user entered 59 degrees Fahrenheit;
+
+celsius_amount = (fahrenheit_amount (BEING 59) - 32) * (5 / 9)
+
+celsius_amount == 15
