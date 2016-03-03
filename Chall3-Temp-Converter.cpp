@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>	
 
-// Setting up the functions, with user input validation, for Cels -> Fahr, Fahr -> Cels and User Selection
+// Initializing the functions, with user input validation, for Cels -> Fahr, Fahr -> Cels and User Selection
 double CelstoFahr(double celsius_amount, double fahrenheit_amount)
 {
 	std::cout << "Please enter the amount to be converted to Fahrenheit: ";
@@ -42,8 +42,7 @@ double FahrtoCels(double celsius_amount, double fahrenheit_amount)
 
 	return celsius_amount;
 }
-
-double UserSelection(double user_selection)
+int UserSelectionValidate(int user_selection)
 {
 	std::cout << "Please enter your selection: ";
 	std::cin >> user_selection;
@@ -58,9 +57,16 @@ double UserSelection(double user_selection)
 	return user_selection;
 }
 
-double main()
+
+// Initializing the function for restarting the program
+std::string RestartFunction(std::string user_returntomenu)
 {
-	double user_selection;
+	// WILL FILL OUT THIS CODE LAST ALSO WILL IS GAY AND LIKES PENIS
+}
+
+int main()
+{
+	int user_selection;
 	double celsius_amount;
 	double fahrenheit_amount;
 	std::string user_returntomenu;
@@ -69,8 +75,16 @@ double main()
 	std::cout << "1. Convert Celsius to Fahrenheit\n";
 	std::cout << "2. Convert Fahrenheit to Celsius\n";
 	std::cout << "3. Exit program\n";
-	std::cout << "Please select an option: ";
 
+	UserSelectionValidate(user_selection);
+
+	if (user_selection == 1)
+	{
+		CelstoFahr(celsius_amount, fahrenheit_amount);
+
+		std::cout << "\n" << celsius_amount << " degrees Celsius is equal to " << fahrenheit_amount << " degrees Fahrenheit";
+
+	}
 
     return 0;
 }
