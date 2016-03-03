@@ -7,6 +7,15 @@
 #include <string>
 #include <limits>
 
+// Forward declaring the functions
+double CinFailCheck(double cin_fail_check);
+double CelstoFahr(double celsius_amount, double fahrenheit_amount);
+double FahrtoCels(double celsius_amount, double fahrenheit_amount);
+int UserSelectionValidate(int user_selection);
+void pauseAtEnd();
+void UserRestart();
+int menu(bool CONVERTER_RUNNING);
+
 // Initializing the functions, with user input validation, for Cels -> Fahr, Fahr -> Cels and User Selection
 double CinFailCheck(double cin_fail_check)
 {
@@ -23,11 +32,14 @@ double CinFailCheck(double cin_fail_check)
 double CelstoFahr(double celsius_amount, double fahrenheit_amount)
 {
 	// Declaring cin_fail_check to enable me to have the cin.fail() as a function
-	double cin_fail_check;
+	double cin_fail_check = 0;
 
 	// Perform cin.fail() on the users input then grab that input and clone it to celsius_amount
 	CinFailCheck(cin_fail_check);
+
 	celsius_amount = cin_fail_check;
+	std::cin.clear();
+	std::cin.ignore();
 
 	// Make conversion using the formula for C to F
 	fahrenheit_amount = (celsius_amount * 1.8) + 32;
@@ -38,10 +50,11 @@ double CelstoFahr(double celsius_amount, double fahrenheit_amount)
 double FahrtoCels(double celsius_amount, double fahrenheit_amount)
 {
 	// Declaring cin_fail_check to enable me to have the cin.fail() as a function
-	double cin_fail_check;
+	double cin_fail_check = 0;
 
 	// Perform cin.fail() on the users input then grab that input and clone it to fahrenheit_amount
 	CinFailCheck(cin_fail_check);
+
 	fahrenheit_amount = cin_fail_check;
 	std::cin.clear();
 	std::cin.ignore();
@@ -51,13 +64,15 @@ double FahrtoCels(double celsius_amount, double fahrenheit_amount)
 
 	return celsius_amount;
 }
+
 int UserSelectionValidate(int user_selection)
 {
 	// Declaring cin_fail_check to enable me to have the cin.fail() as a function
-	double cin_fail_check;
+	double cin_fail_check = 0;
 
 	// Perform cin.fail() on the users input then grab that input and clone it to user_selection
 	CinFailCheck(cin_fail_check);
+
 	user_selection = cin_fail_check;
 	std::cin.clear();
 	std::cin.ignore();
@@ -66,7 +81,8 @@ int UserSelectionValidate(int user_selection)
 }
 
 // Function to enable a pause at the end to avoid the use of system("pause")
-void pauseAtEnd() {
+void pauseAtEnd() 
+{
 	std::cout << "\n\nPlease press Enter to exit . . .";
 	std::cin.sync();
 	std::cin.get();
@@ -89,14 +105,10 @@ void UserRestart()
 		{
 			if (user_returntomenu == "Y" || user_returntomenu == "y")
 			{
-				int user_selection;
-				double cin_fail_check;
-				double celsius_amount;
-				double fahrenheit_amount;
 				bool CONVERTER_RUNNING = true;
 				std::cin.clear();
 				std::cin.ignore();
-				menu(CONVERTER_RUNNING, user_selection, cin_fail_check, celsius_amount, fahrenheit_amount);
+				menu(CONVERTER_RUNNING);
 			}
 
 			else
@@ -116,8 +128,12 @@ void UserRestart()
 }
 
 // Writing the menu() function to enable loopback from the restart function
-int menu(bool CONVERTER_RUNNING, int user_selection, int cin_fail_check, double celsius_amount, double fahrenheit_amount)
+int menu(bool CONVERTER_RUNNING)
 {
+	int user_selection = 0;
+	double cin_fail_check;
+	double celsius_amount = 0;
+	double fahrenheit_amount = 0;
 	std::cout << "Welcome to the Temperature Converter!\n\n";
 	std::cout << "1. Convert Celsius to Fahrenheit\n";
 	std::cout << "2. Convert Fahrenheit to Celsius\n";
@@ -169,15 +185,11 @@ int main()
 {
 
 	// Declare variables to be used and passed between functions as needed
-	int user_selection;
-	double cin_fail_check;
-	double celsius_amount;
-	double fahrenheit_amount;
 	bool CONVERTER_RUNNING = true;
 
 	while (CONVERTER_RUNNING == true)
 	{
-		menu(CONVERTER_RUNNING, user_selection, cin_fail_check, celsius_amount, fahrenheit_amount);
+		menu(CONVERTER_RUNNING);
 	}
 
 	pauseAtEnd();

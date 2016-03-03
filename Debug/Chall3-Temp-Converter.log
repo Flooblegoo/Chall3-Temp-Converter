@@ -1,4 +1,4 @@
 ﻿  Chall3-Temp-Converter.cpp
-g:\documents\programming\c++\github\chall3-temp-converter\chall3-temp-converter.cpp(61): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-g:\documents\programming\c++\github\chall3-temp-converter\chall3-temp-converter.cpp(99): error C3861: 'menu': identifier not found
-g:\documents\programming\c++\github\chall3-temp-converter\chall3-temp-converter.cpp(180): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+g:\documents\programming\c++\github\chall3-temp-converter\chall3-temp-converter.cpp(71): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+g:\documents\programming\c++\github\chall3-temp-converter\chall3-temp-converter.cpp(129): warning C4101: 'cin_fail_check': unreferenced local variable
+  Chall3-Temp-Converter.vcxproj -> G:\Documents\Programming\C++\GitHub\Chall3-Temp-Converter\Debug\Chall3-Temp-Converter.exe
