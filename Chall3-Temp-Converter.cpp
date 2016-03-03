@@ -13,8 +13,8 @@ double CelstoFahr(double celsius_amount, double fahrenheit_amount);
 double FahrtoCels(double celsius_amount, double fahrenheit_amount);
 int UserSelectionValidate(int user_selection);
 void pauseAtEnd();
-void UserRestart();
-int menu(bool CONVERTER_RUNNING);
+bool UserRestart();
+void menu();
 
 // Initializing the functions, with user input validation, for Cels -> Fahr, Fahr -> Cels and User Selection
 double CinFailCheck(double cin_fail_check)
@@ -89,8 +89,9 @@ void pauseAtEnd()
 }
 
 // Restart function to avoid having to re-write it all each time
-void UserRestart()
+bool UserRestart()
 {
+	bool CONVERTER_RUNNING = true;
 	bool BOOL_RETURNTOMENU = true;
 	std::string user_returntomenu;
 
@@ -105,10 +106,9 @@ void UserRestart()
 		{
 			if (user_returntomenu == "Y" || user_returntomenu == "y")
 			{
-				bool CONVERTER_RUNNING = true;
 				std::cin.clear();
 				std::cin.ignore();
-				menu(CONVERTER_RUNNING);
+				menu();
 			}
 
 			else
@@ -125,13 +125,16 @@ void UserRestart()
 			std::cin.ignore();
 		}
 	}
+
+	CONVERTER_RUNNING = false;
+
+	return CONVERTER_RUNNING;
 }
 
 // Writing the menu() function to enable loopback from the restart function
-int menu(bool CONVERTER_RUNNING)
+void menu()
 {
 	int user_selection = 0;
-	double cin_fail_check;
 	double celsius_amount = 0;
 	double fahrenheit_amount = 0;
 	std::cout << "Welcome to the Temperature Converter!\n\n";
@@ -148,8 +151,6 @@ int menu(bool CONVERTER_RUNNING)
 
 		// cout the amounts received from the function
 		std::cout << "\n" << celsius_amount << " degrees Celsius is equal to " << fahrenheit_amount << " degrees Fahrenheit";
-
-		UserRestart();
 	}
 
 	else if (user_selection == 2)
@@ -159,8 +160,6 @@ int menu(bool CONVERTER_RUNNING)
 
 		// cout the amounts received from the function
 		std::cout << "\n" << fahrenheit_amount << " degrees Fahrenheit is equal to " << celsius_amount << " degrees Celsius";
-
-		UserRestart();
 	}
 
 	else if (user_selection == 3)
@@ -175,10 +174,6 @@ int menu(bool CONVERTER_RUNNING)
 		std::cout << "\nPlease enter a number between 1 and 3 for your selection!\n\n";
 		UserSelectionValidate(user_selection);
 	}
-
-	CONVERTER_RUNNING = false;
-
-	return CONVERTER_RUNNING;
 }
 
 int main()
@@ -189,11 +184,11 @@ int main()
 
 	while (CONVERTER_RUNNING == true)
 	{
-		menu(CONVERTER_RUNNING);
+		menu();
+		UserRestart();
 	}
 
 	pauseAtEnd();
 
     return 0;
 }
-
