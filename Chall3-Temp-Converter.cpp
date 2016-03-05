@@ -142,7 +142,7 @@ void menu()
 	std::cout << "2. Convert Fahrenheit to Celsius\n";
 	std::cout << "3. Exit program\n";
 
-	UserSelectionValidate(user_selection);
+	std::cin >> user_selection;
 
 	if (user_selection == 1)
 	{
