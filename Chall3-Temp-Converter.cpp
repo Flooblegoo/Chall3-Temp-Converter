@@ -1,6 +1,6 @@
 // Challenge 3 - Temperature Converter (C to F/F to C)
 // I will be practicing functions and passing variables in this Challenge
-// by Jake R.
+// by Jake R. & Will C.
 
 #include "stdafx.h"
 #include <iostream>
@@ -8,171 +8,129 @@
 #include <limits>
 
 // Forward declaring the functions
-double CinFailCheck(double cin_fail_check);
-double CelstoFahr(double celsius_amount, double fahrenheit_amount);
-double FahrtoCels(double celsius_amount, double fahrenheit_amount);
-int UserSelectionValidate(int user_selection);
-void pauseAtEnd();
-bool UserRestart();
+void CelstoFahr();
+void FahrtoCels();
+double UserReadDoubleInput();
+int UserReadIntInput();
 void menu();
 
-// Initializing the functions, with user input validation, for Cels -> Fahr, Fahr -> Cels and User Selection
-double CinFailCheck(double cin_fail_check)
-{
-	while (std::cin.fail())
-	{
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "\nBad entry, no text allowed! Enter a Number: ";
-		std::cin >> cin_fail_check;
-	}
-
-	return cin_fail_check;
-}
-double CelstoFahr(double celsius_amount, double fahrenheit_amount)
+void CelstoFahr()
 {
 	// Declaring cin_fail_check to enable me to have the cin.fail() as a function
-	double cin_fail_check = 0;
+	double celsius_amount = -1;
+	double fahrenheit_amount = -1;
 
-	// Perform cin.fail() on the users input then grab that input and clone it to celsius_amount
-	CinFailCheck(cin_fail_check);
-
-	celsius_amount = cin_fail_check;
-	std::cin.clear();
-	std::cin.ignore();
+	std::cout << "\nPlease enter your celsius temperature\n";
+	celsius_amount = UserReadDoubleInput();
 
 	// Make conversion using the formula for C to F
-	fahrenheit_amount = (celsius_amount * 1.8) + 32;
+	fahrenheit_amount = (celsius_amount * 1.8) + 32.0;
 
-	return fahrenheit_amount;
+	std::cout << "\n" << celsius_amount << " degrees Celsius is equal to " << fahrenheit_amount << " degrees Fahrenheit\n\n";
 }
 
-double FahrtoCels(double celsius_amount, double fahrenheit_amount)
+void FahrtoCels()
 {
 	// Declaring cin_fail_check to enable me to have the cin.fail() as a function
-	double cin_fail_check = 0;
+	double celsius_amount = -1;
+	double fahrenheit_amount = -1;
 
-	// Perform cin.fail() on the users input then grab that input and clone it to fahrenheit_amount
-	CinFailCheck(cin_fail_check);
-
-	fahrenheit_amount = cin_fail_check;
-	std::cin.clear();
-	std::cin.ignore();
+	std::cout << "\nPlease enter your fahrenheit temperature\n";
+	fahrenheit_amount = UserReadDoubleInput();
 
 	// Make conversion using the formula for F to C
-	celsius_amount = (fahrenheit_amount - 32) * (5 / 9);
+	celsius_amount = (fahrenheit_amount - 32.0) * (5.0 / 9.0);
 
-	return celsius_amount;
+	std::cout << "\n" << fahrenheit_amount << " degrees Fahrenheit is equal to " << celsius_amount << " degrees Celsius\n\n";
 }
 
-int UserSelectionValidate(int user_selection)
+// Read and check user integer inputs
+double UserReadDoubleInput()
 {
-	// Declaring cin_fail_check to enable me to have the cin.fail() as a function
-	double cin_fail_check = 0;
-
-	// Perform cin.fail() on the users input then grab that input and clone it to user_selection
-	CinFailCheck(cin_fail_check);
-
-	user_selection = cin_fail_check;
-	std::cin.clear();
-	std::cin.ignore();
-
-	return user_selection;
-}
-
-// Function to enable a pause at the end to avoid the use of system("pause")
-void pauseAtEnd() 
-{
-	std::cout << "\n\nPlease press Enter to exit . . .";
-	std::cin.sync();
-	std::cin.get();
-}
-
-// Restart function to avoid having to re-write it all each time
-bool UserRestart()
-{
-	bool CONVERTER_RUNNING = true;
-	bool BOOL_RETURNTOMENU = true;
-	std::string user_returntomenu;
-
-	// Check if the player wishes to make another conversion or exit the program
-	while (BOOL_RETURNTOMENU == true)
+	double input = -1;
+	bool valid = false;
+	do
 	{
-		std::cout << "\nDo you wish to make another conversion? Y/N: ";
-		std::cin >> user_returntomenu;
-		std::cin.ignore();
-
-		if (user_returntomenu == "Y" || user_returntomenu == "y" || user_returntomenu == "N" || user_returntomenu == "n")
+		std::cout << "Enter a number: " << std::flush;
+		std::cin >> input;
+		if (std::cin.good())
 		{
-			if (user_returntomenu == "Y" || user_returntomenu == "y")
-			{
-				std::cin.clear();
-				std::cin.ignore();
-				menu();
-			}
-
-			else
-			{
-				std::cout << "\nGoodbye";
-				BOOL_RETURNTOMENU = false;
-			}
+			//everything went well, we'll get out of the loop and return the value
+			valid = true;
 		}
-
 		else
 		{
-			std::cout << "\nBad Entry! Numbers not allowed! Please enter Y or N\n";
+			//something went wrong, we reset the buffer's state to good
 			std::cin.clear();
-			std::cin.ignore();
+			//and empty it
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Invalid input; please re-enter." << std::endl;
 		}
-	}
+	} while (!valid);
 
-	CONVERTER_RUNNING = false;
+	return (input);
 
-	return CONVERTER_RUNNING;
+}
+
+//Read and check user integer inputs
+int UserReadIntInput()
+{
+	int input = -1;
+	bool valid = false;
+	do
+	{
+		std::cout << "Enter a number: " << std::flush;
+		std::cin >> input;
+		if (std::cin.good())
+		{
+			//everything went well, we'll get out of the loop and return the value
+			valid = true;
+		}
+		else
+		{
+			// Something went wrong, we reset the buffer's state to good
+			std::cin.clear();
+			// and empty it
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Invalid input; please re-enter.\n";
+		}
+	} while (!valid);
+
+	return (input);
+
 }
 
 // Writing the menu() function to enable loopback from the restart function
 void menu()
 {
 	int user_selection = 0;
-	double celsius_amount = 0;
-	double fahrenheit_amount = 0;
-	std::cout << "Welcome to the Temperature Converter!\n\n";
 	std::cout << "1. Convert Celsius to Fahrenheit\n";
 	std::cout << "2. Convert Fahrenheit to Celsius\n";
 	std::cout << "3. Exit program\n";
 
-	std::cin >> user_selection;
+	user_selection = UserReadIntInput();
 
-	if (user_selection == 1)
+	switch (user_selection)
 	{
-		// Run Celsius to Fahrenheit function and retrieve the values to cout here
-		CelstoFahr(celsius_amount, fahrenheit_amount);
-
-		// cout the amounts received from the function
-		std::cout << "\n" << celsius_amount << " degrees Celsius is equal to " << fahrenheit_amount << " degrees Fahrenheit";
-	}
-
-	else if (user_selection == 2)
-	{
-		// Run Fahrenheit to Celsius function and retrieve the values to cout here
-		FahrtoCels(celsius_amount, fahrenheit_amount);
-
-		// cout the amounts received from the function
-		std::cout << "\n" << fahrenheit_amount << " degrees Fahrenheit is equal to " << celsius_amount << " degrees Celsius";
-	}
-
-	else if (user_selection == 3)
-	{
-		std::cout << "\nGoodbye";
-	}
-
-	else
-	{
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "\nPlease enter a number between 1 and 3 for your selection!\n\n";
-		UserSelectionValidate(user_selection);
+		case 1:
+			// Run Celsius to Fahrenheit function and retrieve the values to cout here
+			CelstoFahr();
+			menu();
+			break;
+		case 2:
+			// Run Fahrenheit to Celsius function and retrieve the values to cout here
+			FahrtoCels();
+			menu();
+			break;
+		case 3:
+			std::cout << "\nGoodbye";
+			break;
+		default:
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "\nPlease enter a number between 1 and 3 for your selection!\n\n";
+			menu();
+			break;
 	}
 }
 
@@ -180,15 +138,12 @@ int main()
 {
 
 	// Declare variables to be used and passed between functions as needed
-	bool CONVERTER_RUNNING = true;
+	std::cout << "Welcome to the Temperature Converter!\n\n";
+	menu();
 
-	while (CONVERTER_RUNNING == true)
-	{
-		menu();
-		UserRestart();
-	}
+	//clear buffer, wait for input to close program
+	std::cin.clear(); std::cin.ignore(INT_MAX, '\n');
+	std::cin.get();
 
-	pauseAtEnd();
-
-    return 0;
+	return 0;
 }
